@@ -10,7 +10,10 @@ import Link from 'next/link'
 import { Button } from '../ui/button'
 import UserIcon from './UserIcon'
 import { links } from '@/utils/links'
-// import SignOutLink from './SignOutLink'
+import { SignedIn, SignedOut, SignInButton, SignUpButton } from '@clerk/nextjs'
+// import { SignedOut } from '@clerk/clerk-react'
+// SignInButton SignOutButton SignedIn SignedOut
+import SignOutLink from './SignOutLink'
 
 function LinksDropdown() {
   return (
@@ -21,16 +24,35 @@ function LinksDropdown() {
           <UserIcon />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className='w-52' align='start' sideOffset={10}>
-        {links.map((link) => {
-          return (
-            <DropdownMenuItem key={link.href}>
-              <Link href={link.href} className='capitalize w-full'>
-                {link.label}
-              </Link>
-            </DropdownMenuItem>
-          )
-        })}
+      <DropdownMenuContent>
+        <SignedOut>
+          <DropdownMenuItem>
+            <SignInButton mode='modal'>
+              <button className='w-full text-left'>Login</button>
+            </SignInButton>
+          </DropdownMenuItem>
+          <DropdownMenuSeparator />
+          <DropdownMenuItem>
+            <SignUpButton mode='modal'>
+              <button className='w-full text-left'>Register</button>
+            </SignUpButton>
+          </DropdownMenuItem>
+        </SignedOut>
+        <SignedIn>
+          {links.map((link) => {
+            return (
+              <DropdownMenuItem key={link.href}>
+                <Link href={link.href} className='capitalize w-full'>
+                  {link.label}
+                </Link>
+              </DropdownMenuItem>
+            )
+          })}
+          <DropdownMenuSeparator />
+          <DropdownMenuItem>
+            <SignOutLink />
+          </DropdownMenuItem>
+        </SignedIn>
       </DropdownMenuContent>
     </DropdownMenu>
   )
