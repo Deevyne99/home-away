@@ -82,11 +82,10 @@ function HomePage() {
     </div>
   )
 }
-export default HomePage
 ```
 
 ```sh
-npx shadcn@latest add breadcrumb calendar card checkbox dropdown-menu input label popover scroll-area select separator table textarea toast skeleton
+npx shadcn@latest add breadcrumb calendar card checkbox dropdown-menu input label popover scroll-area select separator table textarea sonner skeleton
 ```
 
 - components
@@ -1474,7 +1473,6 @@ import {
 import ImageInputContainer from '@/components/form/ImageInputContainer'
 
 /* image input container */
-
 ;<ImageInputContainer
   image={profile.profileImage}
   name={profile.username}
